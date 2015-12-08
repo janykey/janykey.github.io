@@ -1,0 +1,6 @@
+"S" or "<" 	smaller font
+"B" or ">" 	bigger font
+"A" 		toggle current/all slides
+"F" 		switch off/on bottom status line
+"K" 		toggle use of mouse click
+"C" 		show table of contents

@@ -1,0 +1,11 @@
+in the JXTemplate add < and > around the xml-declaration
+
+?xml version="1.0"?
+<soap xmlns:jx="http://apache.org/cocoon/templates/jx/1.0">
+ <jx:macro name="xmlize">
+  <jx:parameter name="value"/>
+  <jx:parameter name="ignoreRootElement" default="false"/>
+  <jx:set var="ignored" value="${cocoon.session.saxer( value, cocoon.consumer, ignoreRootElement )}"/>
+ </jx:macro>
+ 	<xmlize value="&lt;p>${soapData}&lt;/p>" ignoreRootElement="false"/>
+</soap>

@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Praktikum beim DLR</title>
+<meta name="copyright" content="BSc Jan Hinzmann, August 2006" /> 
+
+<link rel="stylesheet" type="text/css" media="screen, projection"
+	href="slideshow_files/show.css" />
+
+<link rel="stylesheet" type="text/css" media="print"
+	href="slideshow_files/print.css" />
+
+<link rel="stylesheet" type="text/css" media="screen, projection"
+	href="slideshow_files/w3c-blue.css" />
+
+<script src="slideshow_files/slidy.js" type="text/javascript"></script>
+<style type="text/css"> 
+ 
+    img.centered {
+    	display: block;
+	    margin-left: auto;
+	    margin-right: auto
+    }
+    
+</style>
+</head>
+
+<body>
+
+<div class="background">
+	<img id="head-icon"	alt="graphic with four colored squares"
+		src="slideshow_files/icon-blue.png" align="left" /> 
+	<img alt="DLR logo" style="padding-right:10px"
+		src="slideshow_files/dlr_logo.gif" align="right" />
+</div>
+
+<!-- cover -->
+
+<div class="slide cover">
+	<img src="slideshow_files/dlr_satellite.jpg"	alt="Cover page image" 
+		class="cover" />
+	<br clear="all" />
+	<h1>Praktikum beim Deutschen Zentrum für Luft- und Raumfahrt e.V.</h1>
+	<p>B.Sc. Jan Hinzmann</p>
+</div>
+
+
+<!-- content -->
+<div class="slide">
+<h1>DLR - Allgemein</h1>
+	<ul>
+		<li>Das DLR ist das nationale Forschungszentrum der Bundesrepublik 
+			Deutschland für Luft- und Raumfahrt.</li>
+		<li>Die Forschungs- und Entwicklungsarbeiten sind in nationale und 
+			internationale Kooperationen eingebunden.</li>
+		<li>Das DLR ist für die Planung und Umsetzung der deutschen 
+			Raumfahrtaktivitäten sowie für die internationale 
+			Interessenswahrnehmung zuständig. </li>
+	</ul>
+</div>
+
+<div class="slide">
+<h1>DLR - Standorte</h1>
+	<ul>
+		<li>Das Deutsche Zentrum für Luft- und Raumfahrt e.V. ist ein
+			verteiltes Unternehmen mit Standorten in (Nord -> Süd)
+		<ul>
+			<li>Berlin-Adlershof</li>
+			<li>Braunschweig</li>
+			<li>Köln-Porz</li>
+			<li>Göttingen</li>
+			<li>Bonn</li>
+			<li>Lampoldshausen</li>
+			<li>Stuttgart</li>
+			<li>Oberpfaffenhofen</li>
+			<li>Außenbüros in Brüssel, Paris und Washington, D.C.</li>
+		</ul>
+		</li>
+	</ul>
+	<p>In Braunschweig arbeiten ungefähr 800 von insg. ca. 
+		5.100 Mitarbeitern.</p>
+</div>
+
+<div class="slide">
+<h1>DLR - Braunschweig</h1>
+	<p>In Braunschweig und Köln-Porz befindet sich die Abteilung <em>Simulations-
+		und Softwaretechnik (SISTEC)</em>.
+	<ul>
+		<li>Software-QS und eingebettete Systeme (QS)</li>
+		<li>Verteilte Systeme und Komponentensoftware (VK)</li>
+	</ul>
+	<p>Mein Standort war Braunschweig:<br/>
+		<img src="images/dlr_bs.png" alt="DLR Standort Braunschweig" width="90%"/>
+	</p>
+</div>
+
+<div class="slide">
+<h1>DLR - Köln</h1>
+	<p>Dienstantrittsreise nach Köln-Porz - Sitz des Vorstandes, Hauptverwaltung 
+	<br/>
+		<img src="images/dlr_kp.png" alt="DLR Standort Köln Porz" width="80%"/>
+	</p>
+</div>
+
+<div class="slide">
+<h1>DLR - Software Engineering</h1>
+	<p>Das DLR ist an diversen Softwareprojekten beteiligt. Hierbei kommen
+		folgende Tools zum Einsatz:
+	</p>
+	<ul>
+		<li>Eclipse/... - Integrierte Entwicklungsumgebungen</li>
+		<li>CVS/SVN - Versionskontrolle</li>
+		<li>ViewCVS - Code browsing</li>
+		<li>Mantis - Bugtracking</li>
+		<li><em>Jupiter</em> - Code Review</li>
+		<li>MS-Sharepoint - Dokumentenablage</li>
+	</ul>
+	<p>Meine Hauptaufgabe:
+	</p>
+		<ul>
+		  <li>Erweiterung der ViewCVS-Software um die Funkionalität "Changelog".
+		  </li>
+		</ul>
+</div>
+
+
+<div class="slide">
+<h1>Versionsmanagement</h1>
+	<ul>
+		<li>Versionsmanagement ermöglicht das Arbeiten im Team.</li>
+		<li>Mehrere Mitarbeiter arbeiten gleichzeitig an den gleichen Dateien.</li>
+		<li>Die Versionskontrolle verhindert Chaos und Speicherplatzprobleme.</li>
+		<li>Durch <em>update, edit, commit</em> wird der Code aktuell gehalten</li>
+		<li>früher: CVS, heute: SVN</li>
+		<li>Mit Tags und Branches kann man Versionen "einfrieren" und auch 
+			später noch verfügbar machen.</li>
+	</ul>
+</div>
+
+<div class="slide">
+<h1>Versionsmanagement (cont.)</h1>
+	<ul>
+		<li>Ablauf einer CVS-Session
+			<img src="images/cvs.png" class="centered"/>
+		</li>
+	</ul>
+</div>
+
+<div class="slide">
+<h1>ViewVC - Repository Browser</h1>
+	<p>Vorgehen:
+	</p>
+	<ul>
+		<li>Evaluation der ViewCVS-Software</li>
+		<li>Aufbau einer Testumgebung mit identischer Installation (httpd, cvs, 
+			svn, viewvc, python).</li>
+		<li>Webrecherche zu Changelogtools für cvs, svn</li>
+	</ul>
+	<p>Ergebnisse:
+	</p>
+		<ul>
+			<li><em><span style="color:red">ViewCVS</span></em> wurde 
+				weiterentwickelt und in <em><span style="color:green">ViewVC</span></em> 
+				umbenannt, da es nun auch SVN-Projekte unterstützt.</li>
+			<li>ViewVC ist in Python geschrieben und wird über ein CGI-Skript 
+				durch den Webserver gestartet.</li>
+			<li>Das Hauptskript ist 3.642 Zeilen lang => Eclipse + PyDev plugin</li>
+			<li>Changelog für CVS mittels cvs2cl.py</li>
+		</ul>
+</div>
+
+<div class="slide">
+	<h1>ViewVC - Evaluation</h1>
+	<ul>
+		<li>Die ViewVC-Installation in der Testumgebung mit zwei Testprojekten 
+		und einem "echten" Projekt.</li>
+	</ul>
+	<img src="images/viewvc_index.png" class="centered"/>
+</div>
+
+<div class="slide">
+	<h1>ViewVC - Installation (Testumgebung)</h1>
+	<ul>
+		<li>Die Projekte können auch aus einem pull-down-Menü ausgewählt werden.
+		</li>
+	</ul>
+	<img src="images/viewvc_repositories.png" class="centered"/>
+	<ul>
+		<li>So gelangt man zu einer Übersichtsseite eines Projektes.</li>
+		<li>Eine Alternative sind auch die Links auf der Startseite.</li>
+	</ul>
+</div>
+
+<div class="slide">
+	<h1>ViewVC - Installation (Testumgebung cont.)</h1>
+	<ul>
+		<li>Auf der Übersichtsseite eines Projektes sind Dateien und Ordner mit 
+		Metadaten aufgelistet.</li>
+	</ul>
+	<img src="images/viewvc_projectindex.png" class="centered"/>
+</div>
+
+<div class="slide">
+	<h1>ViewVC - Commitdatabase</h1>
+	<ul>
+		<li>Die Recherchen haben ergeben, dass ViewVC mitlerweile mit einem 
+			anderen Projekt verschmolzen ist, welches Changelogs aus 
+			Repositories generiert.</li>
+		<li>Es muss eine sog. <em>Commit-Datenbank</em> angelegt werden.</li>
+	</ul>
+	<img src="images/viewvc_commitdb_er.png" class="centered"width="90%"/>
+</div>
+
+<div class="slide">
+	<h1>ViewVC - Commitdatabase (cont.)</h1>
+	<ul>
+		<li>Changelog <em>on-the-fly</em>
+			<img src="images/viewvc_changelog.png" class="centered" width="80%"/>
+		</li>
+	</ul>
+</div>
+
+<div class="slide">
+<h1>ViewVC - Maintenance (CVS)</h1>
+	<ul>
+		<li>Die Commit-Datenbank sollte pro Commit aktualisiert werden.</li>
+		<li>Die Versionskontrollsysteme bieten hierzu sog. <em>Hookskripte</em>
+			an.</li>
+		<li>Bei CVS-Projekten bietet sich das Hookskript <em>loginfo</em> an.
+			<img src="images/hookscripts_cvs.png" 
+				style="float:right; padding-top:12px"/>
+			<ul>
+				<li><em>loginfo</em> wird nach einem erfolgreichen Commit 
+					aufgerufen und bekommt	eine Revisionsnummer und den Namen 
+					des Repositories.</li>
+				<li>Mit diesen Parametern wird der sog. <em>loginfo-handler</em> 
+					aufgerufen, welcher die Datenbank aktualisiert.</li>
+			</ul>
+			<br style="clear:both"/>
+		</li>
+		<li>
+<pre>#viewvc loginfohandler
+ALL /work/hinz_ja/install/viewvc/bin/loginfo-handler %{sVv}</pre>
+		</li>
+	</ul>
+</div>
+
+<div class="slide">
+<h1>ViewVC - Maintenance (SVN)</h1>
+	<ul>
+		<li>Bei SVN-Projekten wird das Skript <em>post-commit</em> benutzt.
+		<img src="images/hookscripts_svn.png" 
+			style="float:right; padding-top:12px"/>
+			<ul>
+				<li><em>post-commit</em> wird nach einem erfolgreichen Commit 
+					aufgerufen und bekommt ebenfalls die nötigen Parameter vom
+					SVN-System übergeben.</li>
+				<li>post-commit ruft dann den <em>svndbadmin</em> auf, welcher 
+				die Datenbank aktualisiert.</li>
+			</ul>
+		</li>
+	</ul>
+</div>
+
+<div class="slide">
+<h1>ViewVC - Maintenance (post-commit hook)</h1>
+	<ul>
+		<li>Das Hookscript <em>post-commit</em> aktualisiert die Commitdatenbank.
+<pre>
+#!/bin/sh
+# Jan Hinzmann 2006.04.26
+# This script enables realtime updates to the commit database 
+# for the viewvc query interface.
+
+VIEWVC="/work/hinz_ja/install/viewvc"
+REPOSITORY="$1"
+REVISION="$2"
+
+$VIEWVC/bin/svndbadmin rebuild "$REPOSITORY" "$REVISION"
+</pre>
+		</li>
+	</ul>
+</div>
+
+
+<div class="slide">
+<h1>ViewVC - Deployment</h1>
+	<ul>
+		<li>Das Deploymentdiagramm zeigt die einzelnen Komponenten, die 
+			installiert worden sind.
+			<img src="images/viewvc_deployment.png" class="centered"/>
+			</li>
+	</ul>
+</div>
+
+<div class="slide">
+<h1>ViewVC - Anpassungen</h1>
+	<ul>
+		<li>Link zu der Commitdatenbank
+			<ul>
+				<li>mit Hilfe des Templatesystems von ViewVC wird ein Link 
+					abhängig vom momentanen Projekt gesetzt.</li>
+			</ul>
+<pre>
+&lt;!-- header.ezt: query interface links --&gt;
+&lt;div style="float:left; padding-left: 6px"&gt;
+[if-any rootname]
+&lt;span style="background-color:#DDDDDD; 
+	padding: 2px 4px 2px 4px; 
+	margin: 1px"&gt;
+  &lt;a href="/viewvc/?root=[rootname]&view=query&dir=&file=&
+  file_match=exact&who=&who_match=exact&querysort=date&
+  hours=2&date=month&mindate=&maxdate=&limit_changes=100"&gt;
+    Changelog for [rootname]
+  &lt;/a&gt;  
+&lt;/span&gt; 
+[else]
+</pre>
+		</li>
+		<li>Link-Generierung bei Log-Einträgen mit "MANTIS ID xxxx"
+			<ul>
+				<li>Ersetzung von vereinbarten Strings mit Hilfe von regulären 
+					Ausdrücken bei der Generierung des html-Codes</li>
+			</ul>
+		</li>
+		
+	</ul>
+</div>
+
+
+<div class="slide">
+<h1>Praktikum beim DLR</h1>
+	<img src="images/jan.png" title="Jan Hinzmann" class="centered"/>
+	<p style="border:10%">Mein Praktikum beim DLR hat viel Spaß gemacht und ich 
+	habe eine Menge lernen können.
+	<br/><br/>
+		<span style="text-align: center; display:block">&mdash; Dankeschön &mdash;</span>
+	</p>
+</div>
+
+</body>
+</html>

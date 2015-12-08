@@ -1,0 +1,107 @@
+<HTML>
+<HEAD>
+<TITLE> Test Page </TITLE>
+<style>
+	body { background-color: #aba; margin: 10%; }
+	.item {
+		margin: 6px;
+		margin-left: 10%;
+		margin-right: 10%;
+		border:1px solid gray;
+		background-color: #EFEFFF;
+		padding: 3px;
+		padding-left: 10px;
+		-moz-border-radius: 6px;
+	}
+	.top {
+		text-align: center;
+		border:1px solid;
+		padding: 10px;
+		background-color: #aaa;
+	}
+	.bottom {
+		text-align: right;
+		border:1px solid;
+		padding: 10px;
+		background-color: #aaa;
+	}
+	.info {
+		float: right;
+		margin:0px 80px;
+		padding:6px;
+		border: 1px solid;
+		background-color: #A55;
+	}
+	
+</style>
+<script src="js/prototype.js" type="text/javascript"></script>
+<script src="js/effects.js" type="text/javascript"></script>
+<script>
+
+	function rollOut(){
+//		new Effect.SlideDown('source'); return false;
+//		new Effect.Appear('source'); return false;
+		//new Effect.Appear('top'); return false;
+		//new Effect.Pulsate('bottom'); return false;
+		rock();
+		setTimeout('roll()', 2000);	
+	}
+	function rock(){
+		 new Effect.Appear('top');
+ 		 new Effect.Appear('bottom');
+		 return false;
+	}
+	function roll(){
+		new Effect.SlideDown('item');
+		return false;
+	}
+	function rollinfo(){
+		new Effect.SlideDown('infopanel');
+		return false;
+	}
+</script>
+
+</HEAD>
+
+<BODY onload="rollOut()">
+	<div id="top" class="top">
+		<a href="#" onclick="new Effect.SlideDown('infopanel');return false;" style="float:right;">info</a>
+		<p><b>RegSearch - Die Suchmaschine mit Sex-Appeal!</b></p>
+	</div>
+
+	<div id="infopanel" style="display:none;">
+		<div class="info">
+			<h3>Jans Infos</h3>
+			Hallo, meine Name ist Jan Hinzmann.
+			<p id="info">
+			Ich bin Student der Informatik
+			an der Leibniz Universit&auml;t Hannover. Im 
+			Wintersemester 2006/07 werde ich 
+			meinen Abschluss als <em>M. Sc. in 
+			Informatik</em> machen.<br/>
+			Dies ist eine kleine Testseite, die 
+			die Skripte
+			<tt>prototype.js</tt> und <tt>effects.js</tt>.
+			</p>
+			<a href="#" onclick="new Effect.SlideUp('infopanel');return false;" style="float:right">close</a>
+		</div>
+	</div>
+	
+
+	
+
+<div id="item" style="display:none">
+	<div class="item">stuff</div>
+	<div class="item">stuff</div>
+	<div class="item">stuff</div>
+	<div class="item">stuff</div>
+</div>
+
+
+	<div id="bottom" class="bottom">
+		Jan Hinzmann &copy; 2006
+	</div>
+
+
+</BODY>
+</HTML>

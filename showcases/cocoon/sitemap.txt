@@ -1,0 +1,46 @@
+In the Stitemap.xmap
+
+...
+
+IMPORTANT:
+<map:serializer name="xmlnope" 
+		  logger="sitemap.serializer.xml" mime-type="text/xml" 
+		  src="org.apache.cocoon.serialization.XMLSerializer">
+          <omit-xml-declaration>yes</omit-xml-declaration>
+        </map:serializer>
+
+...
+
+<!-- == Webservice by Cocoon == -->
+      <map:pipeline>
+      	<map:match pattern="webservice">
+      		<map:call function="coDataWS"/>
+      	</map:match>      
+	
+	<!-- getting the soap-envelope -->
+      	<map:match pattern="soapData">
+      		<map:generate type="stream"/>
+            <map:serialize type="xmlnope"/>
+      	</map:match> 
+      	
+      	<!-- which Method is called? -->
+      	<map:match pattern="soapMethod">
+      		<map:generate type="jx" src="xml/dummy.jx">
+      			<map:parameter name="soapData" value="{flow-attribute:soapData}"/>
+      		</map:generate>
+      		<map:transform src="xsl/soapMethod.xsl"/>
+      		<!--<map:transform src="xsl/soapMethodNow.xsl"/>-->
+            <map:serialize type="text"/>
+      	</map:match>
+      	      	
+      	<map:match pattern="answer">
+            <map:generate src="xml/dummy.xml" />
+            <map:transform src="xsl/soap.xsl">
+              <map:parameter name="ret" value="{flow-attribute:ret}"/>
+            </map:transform>
+            <map:serialize type="xml"/>
+         </map:match>         
+      	     
+      </map:pipeline>    
+
+...

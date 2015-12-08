@@ -1,0 +1,104 @@
+/*
+ * 2006.10.02 Jan Hinzmann
+ * Style for my webpage 
+ * quelle surprise! ;o)
+ */
+body {
+    background-color: #abc;
+    font-family:sans-serif;
+    font-size:96%;
+    margin:0px;
+    padding:0px;
+}
+
+img {
+    border: none;
+}
+
+p { 
+    margin-top:0px
+}
+
+.info   {
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom:24px;
+    text-indent:0.5cm;
+    text-align:justify;
+    border:1px solid gray;
+    background-color:#E0E0E0;
+    padding:16px;
+    max-width: 574px;
+}
+
+.content {
+    margin-left:auto;
+    margin-right:auto;
+    padding:8px;
+    border-top: 1px solid gray;
+    border-left: 1px solid gray;
+    border-right: 2px solid gray;
+    border-bottom: 2px solid gray;
+    background-color: #fff;
+    max-width: 674px;
+}
+
+h3 {
+    border: 1px solid #abc;
+    -moz-border-radius-topright: 16px;
+    font-size: 130%;
+    background-color: #abc;
+    color: #fff;
+    margin-left:5%;
+    margin-right:5%;
+    margin-bottom:0px;
+    margin-top:5%;
+    padding: 5px;
+    padding-left:9px;
+}
+
+.entry {
+    border: 1px solid #abc;
+    -moz-border-radius-bottomleft: 16px;
+    margin-left:5%;
+    margin-right:5%;
+    margin-top:0px;
+    margin-bottom:5%;
+    padding:9px;
+}
+
+.spacer {
+    margin: 8%;
+}
+
+.footer {
+    font-size:xx-small;
+    text-align:center;
+    margin-top:0px;
+    padding-top:0px;
+}
+
+.shadow {
+    background-color: #555;
+    border: 1px solid #777;
+    margin: 0px;
+    padding 1px;
+    -moz-border-radius: 6px;
+}
+
+.shadow2 {
+    background-color: #999;
+    border: 1px solid #bbb;
+    margin: 0px;
+    padding: 1px;
+    -moz-border-radius: 6px;
+}
+
+.shadow3 {
+    background-color: #ddd;
+    border: 1px solid #eee;
+    margin: 0px;
+    padding: 1px;
+    -moz-border-radius: 6px;
+}
+

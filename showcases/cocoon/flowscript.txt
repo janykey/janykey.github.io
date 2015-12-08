@@ -1,0 +1,49 @@
+in the flowscript
+
+/**
+ * function from joose: http://joose.iki.fi/cocoon/saxInJX.txt
+ */
+function stringToSAX( str, consumer, ignoreRootElement ) {
+        var is = new Packages.org.xml.sax.InputSource( new java.io.StringReader( str ) );
+        var ignore = ( ignoreRootElement == "true" );
+        var parser = null;
+        var includeConsumer = new org.apache.cocoon.xml.IncludeXMLConsumer(consumer, consumer 
+);
+        includeConsumer.setIgnoreRootElement( true );
+        try {   
+                parser = 
+cocoon.getComponent(Packages.org.apache.excalibur.xml.sax.SAXParser.ROLE );
+                parser.parse( is, includeConsumer );    
+        } finally {
+                if ( parser != null ) cocoon.releaseComponent( parser );
+        }
+}
+
+/**
+ * This function is for the webservice, it dispatches the method received in the
+ * SOAP-envelope and gets the Parameters out of it. Then it finally generates a 
+ * SOAP-response and serialises it back to the client.
+ */
+function coDataWS(){
+	var ret = null;
+	var soapData     = new java.io.ByteArrayOutputStream();
+	var soapArgument = new java.io.ByteArrayOutputStream();
+	
+	clog("SOAP-envelope received, processing the request:\n");
+	
+	//getting the envelope out of the request (can be done only once)
+	cocoon.processPipelineTo("soapData", null, soapData);
+	clog("Request was:\n" + soapData + "\n");
+
+	//getting the method out of the soap-content
+	cocoon.session.setAttribute( "saxer", stringToSAX  );
+	var soapMethod   = new java.io.ByteArrayOutputStream();	
+	cocoon.processPipelineTo("soapMethod", {"soapData":soapData}, soapMethod);	
+	clog("soapMethod:\n " + soapMethod + "\n");
+	
+	ret=soapMethod;
+
+	
+	//sending the answer
+	cocoon.sendPage("answer", {"ret":ret});
+}
