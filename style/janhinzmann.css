@@ -41,6 +41,8 @@ p {
     padding:0px;
     background-color: #bcd;
     border: 1px solid #bcd;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
     max-width: 674px;
 }
 
