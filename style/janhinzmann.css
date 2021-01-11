@@ -96,7 +96,7 @@ h3 {
 
 .entry {
     border: 1px solid #abc;
-    -moz-border-radius-bottomleft: 16px;
+    border-top-right-radius: 16px;
     margin-left:5%;
     margin-right:5%;
     margin-top:0px;
