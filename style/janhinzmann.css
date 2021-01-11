@@ -31,13 +31,18 @@ p {
     max-width: 574px;
 }
 .nav {
+    margin-left:auto;
+    margin-right:auto;
+    padding:0px;
+    background-color: #abc;
+    max-width: 674px;
 }
 .nav ul { 
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: #abc;
 }
 .nav li { 
     float: left;
@@ -57,9 +62,8 @@ p {
     border-right: none; 
 }
 .nav .active { 
-    background-color: #4CAF50; 
+    background-color: #ffe; 
 }
-    
     
 .content {
     margin-left:auto;
