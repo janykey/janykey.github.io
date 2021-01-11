@@ -83,7 +83,7 @@ p {
     border-right: 2px solid gray;
     border-bottom: 2px solid gray;
     background-color: #fff;
-   /* max-width: 674px; */
+    max-width: 800px;
 }
 
 h3 {
