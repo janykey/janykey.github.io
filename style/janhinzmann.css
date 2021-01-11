@@ -83,7 +83,7 @@ p {
     border-right: 2px solid gray;
     border-bottom: 2px solid gray;
     background-color: #fff;
-    max-width: 674px;
+   /* max-width: 674px; */
 }
 
 h3 {
@@ -126,7 +126,7 @@ h3 {
     border: 1px solid #777;
     margin: 0px;
     padding 1px;
-    -moz-border-radius: 6px;
+    border-radius: 6px;
 }
 
 .shadow2 {
@@ -134,7 +134,7 @@ h3 {
     border: 1px solid #bbb;
     margin: 0px;
     padding: 1px;
-    -moz-border-radius: 6px;
+    border-radius: 6px;
 }
 
 .shadow3 {
@@ -142,6 +142,6 @@ h3 {
     border: 1px solid #eee;
     margin: 0px;
     padding: 1px;
-    -moz-border-radius: 6px;
+    border-radius: 6px;
 }
 
