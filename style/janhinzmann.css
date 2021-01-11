@@ -43,7 +43,7 @@ p {
     border: 1px solid #bcd;
     border-top-left-radius: 16px;
     border-top-right-radius: 16px;
-    max-width: 674px;
+    max-width: 800px;
 }
 
 .nav li a:hover {
@@ -78,7 +78,7 @@ p {
 .content {
     margin-left:auto;
     margin-right:auto;
-    border-top: 1px solid gray;
+    border-top: 0px solid gray;
     border-left: 1px solid gray;
     border-right: 2px solid gray;
     border-bottom: 2px solid gray;
