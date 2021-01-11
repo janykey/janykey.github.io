@@ -63,8 +63,8 @@ p {
     border-right: none; 
 }
 .nav .active { 
-    background-color: #ffe; 
-}
+    background-color: #fff; 
+    color: #abc; }
     
 .content {
     margin-left:auto;
