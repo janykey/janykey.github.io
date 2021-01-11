@@ -39,8 +39,14 @@ p {
     margin-left:auto;
     margin-right:auto;
     padding:0px;
-    background-color: #e0e0e0;
+    background-color: #bcd;
+    border: 1px solid #bcd;
     max-width: 674px;
+}
+
+.nav li a:hover {
+  background-color: #fff;
+  color: #abc;
 }
 .nav .active { 
     background-color: #fff; 
@@ -63,10 +69,6 @@ p {
     padding: 14px 16px;
     text-decoration: none;
 }
-.nav li a:hover {
-  background-color: white;
-  color: #abc;
-}
 .nav li:last-child { 
     border-right: none; 
 }
@@ -74,7 +76,6 @@ p {
 .content {
     margin-left:auto;
     margin-right:auto;
-    padding:8px;
     border-top: 1px solid gray;
     border-left: 1px solid gray;
     border-right: 2px solid gray;
