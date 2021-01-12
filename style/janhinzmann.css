@@ -63,6 +63,8 @@ p {
 .nav li { 
     float: left;
     border-right: 1px solid #eee; 
+    font-size: 170%;
+    font-weight: bold;
 }
 .nav li a {
     display: block;
