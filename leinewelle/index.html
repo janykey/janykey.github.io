@@ -8,7 +8,7 @@
         <div><b>Datum: </b><span id="date"> ... loading </span></div>
         <div><b>Pegel: </b><span id="pegel"> ... loading </span></div>
         <div><b>Trend: </b><span id="trend"> ... loading </span></div>
-        <div><b>Temperatur: </b><span id="trend"> ... loading </span></div>
+        <div><b>Temperatur: </b><span id="temperatur"> ... loading </span></div>
         <script>
             let pegelonlinePublicKoldingen = "https://bis.azure-api.net/PegelonlinePublic/REST/stammdaten/stationen/378?key=9dc05f4e3b4a43a9988d747825b39f43";
             let pegelJSON = fetch (pegelonlinePublicKoldingen)
@@ -18,11 +18,13 @@
                     let date = koldingenData.getStammdatenResult[0].Parameter[0].Datenspuren[0].AktuellerMesswert_Zeitpunkt + " Uhr";
                     let pegel = koldingenData.getStammdatenResult[0].Parameter[0].Datenspuren[0].AktuellerMesswert_Text;
                     let trend = koldingenData.getStammdatenResult[0].Parameter[0].Datenspuren[0].Trend;
-            
+                    let temperatur = "kalt";
+                    // Wunstorf: 
                     document.getElementById("messstelle").innerHTML = messstelle;
                     document.getElementById("date").innerHTML = date;
                     document.getElementById("pegel").innerHTML = pegel;
                     document.getElementById("trend").innerHTML = trend;
+                    document.getElementById("temperatur").innerHTML = temperatur;
 
                 });
         </script>
