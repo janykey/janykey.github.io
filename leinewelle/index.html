@@ -9,6 +9,9 @@
         <div><b>Pegel: </b><span id="pegel"> ... loading </span></div>
         <div><b>Trend: </b><span id="trend"> ... loading </span></div>
         <div><b>Temperatur: </b><span id="temperatur"> ... loading </span></div>
+        <div><b>Wetterwarnung: </b><a href="https://www.dwd.de/DE/wetter/warnungen/warnWetter_node.html?ort=Hannover" target="_blank">Wetter (DWD)</a></div>
+        <br/>
+        <div>Daten von <a href="https://www.gewaessergueteonline.nlwkn.niedersachsen.de/Start">NLWKN</a></div>
         <script>
             let pegelonlinePublicKoldingen = "https://bis.azure-api.net/PegelonlinePublic/REST/stammdaten/stationen/378?key=9dc05f4e3b4a43a9988d747825b39f43";
             let pegelJSON = fetch (pegelonlinePublicKoldingen)
