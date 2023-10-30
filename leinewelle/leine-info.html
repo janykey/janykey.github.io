@@ -8,7 +8,7 @@
         <div><b>Datum: </b><span id="date"> ... loading </span></div>
         <div><b>Pegel: </b><span id="pegel"> ... loading </span></div>
         <div><b>Trend: </b><span id="trend"> ... loading </span></div>
-        <div><b>Temperatur: </b><span id="temperatur"> ... loading </span></div>
+        <!--<div><b>Temperatur: </b><span id="temperatur"> ... loading </span></div>-->
         <div><b>Wetterwarnung: </b><a href="https://www.dwd.de/DE/wetter/warnungen/warnWetter_node.html?ort=Hannover" target="_blank">Wetter (DWD)</a></div>
         <br/>
         <div>Daten von <a href="https://www.gewaessergueteonline.nlwkn.niedersachsen.de/Start">NLWKN</a></div>
@@ -21,13 +21,13 @@
                     let date = koldingenData.getStammdatenResult[0].Parameter[0].Datenspuren[0].AktuellerMesswert_Zeitpunkt + " Uhr";
                     let pegel = koldingenData.getStammdatenResult[0].Parameter[0].Datenspuren[0].AktuellerMesswert_Text;
                     let trend = koldingenData.getStammdatenResult[0].Parameter[0].Datenspuren[0].Trend;
-                    let temperatur = "kalt";
-                    // Wunstorf: 
+                    //let temperatur = "kalt";
+                    
                     document.getElementById("messstelle").innerHTML = messstelle;
                     document.getElementById("date").innerHTML = date;
                     document.getElementById("pegel").innerHTML = pegel;
                     document.getElementById("trend").innerHTML = trend;
-                    document.getElementById("temperatur").innerHTML = temperatur;
+                    //document.getElementById("temperatur").innerHTML = temperatur;
 
                 });
         </script>
