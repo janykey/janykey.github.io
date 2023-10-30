@@ -5,7 +5,7 @@
     </head>
     <body>
         <div id="messstelle">Messstelle: </div>
-        <div id="date">Datum: </div>
+        <div id="date">Datum: ... loading</div>
         <div id="pegel">Pegel: </div>
         <div id="trend">Trend: </div>
         <div id="trend">Temperatur: </div>
@@ -19,10 +19,10 @@
                     let pegel = koldingenData.getStammdatenResult[0].Parameter[0].Datenspuren[0].AktuellerMesswert_Text;
                     let trend = koldingenData.getStammdatenResult[0].Parameter[0].Datenspuren[0].Trend;
             
-                    document.getElementById("messstelle").innerHTML = "Messstelle: " + messstelle;
-                    document.getElementById("date").innerHTML = "Datum: " + date;
-                    document.getElementById("pegel").innerHTML = "Pegel: " + pegel;
-                    document.getElementById("trend").innerHTML = "Trend: " + trend;
+                    document.getElementById("messstelle").innerHTML = "<b>Messstelle: </b>" + messstelle;
+                    document.getElementById("date").innerHTML = "<b>Datum: </b>" + date;
+                    document.getElementById("pegel").innerHTML = "<b>Pegel: </b>" + pegel;
+                    document.getElementById("trend").innerHTML = "<b>Trend: </b>" + trend;
 
                 });
         </script>
