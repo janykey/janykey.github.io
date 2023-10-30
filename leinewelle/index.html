@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Leine-Infos</title>
+    </head>
+    <body>
+        <div id="messstelle">Messstelle: </div>
+        <div id="date">Datum: </div>
+        <div id="pegel">Pegel: </div>
+        <div id="trend">Trend: </div>
+        <div id="trend">Temperatur: </div>
+        <script>
+            let pegelonlinePublicKoldingen = "https://bis.azure-api.net/PegelonlinePublic/REST/stammdaten/stationen/378?key=9dc05f4e3b4a43a9988d747825b39f43";
+            let pegelJSON = fetch (pegelonlinePublicKoldingen)
+                .then(function(response) { return response.json(); })
+                .then(function(koldingenData) {
+                    let messstelle = koldingenData.getStammdatenResult[0].Name;
+                    let date = koldingenData.getStammdatenResult[0].Parameter[0].Datenspuren[0].AktuellerMesswert_Zeitpunkt + " Uhr";
+                    let pegel = koldingenData.getStammdatenResult[0].Parameter[0].Datenspuren[0].AktuellerMesswert_Text;
+                    let trend = koldingenData.getStammdatenResult[0].Parameter[0].Datenspuren[0].Trend;
+            
+                    document.getElementById("messstelle").innerHTML = "Messstelle: " + messstelle;
+                    document.getElementById("date").innerHTML = "Datum: " + date;
+                    document.getElementById("pegel").innerHTML = "Pegel: " + pegel;
+                    document.getElementById("trend").innerHTML = "Trend: " + trend;
+
+                });
+        </script>
+    </body>
+</html>
