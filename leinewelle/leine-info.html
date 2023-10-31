@@ -56,8 +56,15 @@
                     <li><b>Differenz:</b> <span id="pegelDifferenz"> ... loading </span></li>
                 </ul>
             </div>
+            
             <br />
-            <!--<div><b>Temperatur: </b><span id="temperatur"> ... loading </span></div>-->
+            
+            <div><h2>Messstelle: <span id="messstelleTemperatur"> ... loading </span></h2></div>
+            <div><b>Datum: </b><span id="datumTemperatur"> ... loading </span></div>
+            <div><b>Wassertemperatur: </b><span id="wassertemperatur"> ... loading </span></div>
+            
+            <br />
+
             <div><h2>Wetterwarnung: </h2><a
                     href="https://www.dwd.de/DE/wetter/warnungen/warnWetter_node.html?ort=Hannover"
                     target="_blank">Wetter (DWD)</a></div>
@@ -74,6 +81,7 @@
         const statIDLeineturm=400;
         const statIDHerrenhausen=325;
         
+        // Wasserpegel
         let pegelOnlineStationsdaten = "https://bis.azure-api.net/PegelonlinePublic/REST/stammdaten/stationen/STAT_ID?key=9dc05f4e3b4a43a9988d747825b39f43";
         let pegelOnlineStationsdatenUrl = pegelOnlineStationsdaten.replace("STAT_ID", statIDKoldingen);
         fetch(pegelOnlineStationsdatenUrl)
@@ -104,10 +112,31 @@
                 document.getElementById("wert_gestern").innerHTML = pegelstandGestern + " cm";
                 document.getElementById("pegelDifferenz").innerHTML = pegelstandDifferenz  + " cm";
             });
-
-
+            
         // Temperatur
-        // https://bis.azure-api.net/Pegelonline/REST/stammdaten/stationen/AlleGuetestationen?subscription-key=19094e54510d4e89b140ff2d3abf715f
+        let pegelOnlineAlleGueteStationenDaten = "https://bis.azure-api.net/Pegelonline/REST/stammdaten/stationen/AlleGuetestationen?subscription-key=19094e54510d4e89b140ff2d3abf715f";
+        let pegelOnlineAlleGueteStationenDatenUrl = pegelOnlineAlleGueteStationenDaten;
+        
+        //function findGueteStationSarstedt(value, index, array) { return value.name == "Sarstedt"; }
+
+        fetch(pegelOnlineAlleGueteStationenDatenUrl)
+            .then(function (response) { return response.json(); })
+            .then(function (alleGueteStationenData) {
+                let alleGueteStationen = alleGueteStationenData.getStammdatenResult;
+                //filter alleGueteStationenData for "Sarstedt"
+                let gueteStationSarstedt = alleGueteStationen.filter((value)=>{return value.Name == "Sarstedt";})[0];
+                let gueteStationSarstedtName = gueteStationSarstedt.Name; // "Name": "Sarstedt",
+                let gueteStationSarstedtDatum = gueteStationSarstedt.Parameter[0].Datenspuren[0].AktuellerMesswert_Zeitpunkt + " Uhr";
+                let gueteStationSarstedtWert = gueteStationSarstedt.Parameter[0].Datenspuren[0].AktuellerMesswert_Text;
+
+                // "Parameter": [{        "Datenspuren": [ { ..."AktuellerMesswert_Text": "12,2 °C", "AktuellerMesswert_Zeitpunkt": "31.10.2023 21:15", ... }
+                // <div><h2>Messstelle: <span id="messstelleTemperatur"> ... loading </span></h2></div>
+                // <div><b>Datum: </b><span id="datumTemperatur"> ... loading </span></div>
+                //  <div><b>Wassertemperatur: </b><span id="wassertemperatur"> ... loading </span></div>
+                document.getElementById("messstelleTemperatur").innerHTML = gueteStationSarstedtName;
+                document.getElementById("datumTemperatur").innerHTML = gueteStationSarstedtDatum;
+                document.getElementById("wassertemperatur").innerHTML = gueteStationSarstedtWert;
+            });
     </script>
   </body>
 </html>
