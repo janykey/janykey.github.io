@@ -42,13 +42,21 @@
     <div class="content">
         <h3>Wavemaster Toolbox</h3>
         <div class="entry">
-            <!--<div><b>Messstelle: </b><span id="messstelle"> ... loading </span></div>-->
-            <div><b>Datum: </b><span id="date"> ... loading </span></div>
-            <div><b>Pegel: </b><span id="pegel"> ... loading </span> in <span id="messstelle"> ... loading </span></div>
+            
+            <div><h2>Messstelle: <span id="messstelle"> ... loading </span></h2></div>
+            <div><b>Datum: </b><span id="datum"> ... loading </span></div>
+            <div><b>Pegel: </b><span id="pegel"> ... loading </span></div>
             <div><b>Trend: </b><span id="trend"> ... loading </span></div>
+            <div><b>Differenz zu gestern: </b><span id="pegelDifferenz"> ... loading </span></div>
+            <div>
+                <ul>
+                    <li><b>Heute:</b> <span id="wert_heute"> ... loading </span></li>
+                    <li><b>Gestern:</b> <span id="wert_gestern"> ... loading </span></li>
+                </ul>
+            </div>
             <br />
             <!--<div><b>Temperatur: </b><span id="temperatur"> ... loading </span></div>-->
-            <div><b>Wetterwarnung: </b><a
+            <div><h2>Wetterwarnung: </h2><a
                     href="https://www.dwd.de/DE/wetter/warnungen/warnWetter_node.html?ort=Hannover"
                     target="_blank">Wetter (DWD)</a></div>
             <br />
@@ -58,29 +66,41 @@
     </div>
     <div class="footer">2006-2023 Jan Hinzmann</div>
     <script>
-        let pegelonlinePublicKoldingen = "https://bis.azure-api.net/PegelonlinePublic/REST/stammdaten/stationen/378?key=9dc05f4e3b4a43a9988d747825b39f43";
-        let statIDKoldingen=378;
-        let statIDPoppenburg=486;
-        let statIDGreene=287;
-        let statIDLeineturm=400;
-        let statIDHerrenhausen=325;
-
-        let pegelOnlineUrl = pegelonlinePublicKoldingen.replace("STAT_ID", statIDKoldingen);
-        let pegelJSON = fetch(pegelOnlineUrl)
+        const statIDKoldingen=378;
+        const statIDPoppenburg=486;
+        const statIDGreene=287;
+        const statIDLeineturm=400;
+        const statIDHerrenhausen=325;
+        
+        let pegelOnlineStationsdaten = "https://bis.azure-api.net/PegelonlinePublic/REST/stammdaten/stationen/STAT_ID?key=9dc05f4e3b4a43a9988d747825b39f43";
+        let pegelOnlineStationsdatenUrl = pegelOnlineStationsdaten.replace("STAT_ID", statIDKoldingen);
+        fetch(pegelOnlineStationsdatenUrl)
             .then(function (response) { return response.json(); })
             .then(function (pegelData) {
                 let messstelle = pegelData.getStammdatenResult[0].Name;
                 let date = pegelData.getStammdatenResult[0].Parameter[0].Datenspuren[0].AktuellerMesswert_Zeitpunkt + " Uhr";
                 let pegel = pegelData.getStammdatenResult[0].Parameter[0].Datenspuren[0].AktuellerMesswert_Text;
                 let trend = pegelData.getStammdatenResult[0].Parameter[0].Datenspuren[0].Trend;
-                //let temperatur = "kalt";
-
+                
                 document.getElementById("messstelle").innerHTML = messstelle;
-                document.getElementById("date").innerHTML = date;
+                document.getElementById("datum").innerHTML = date;
                 document.getElementById("pegel").innerHTML = pegel;
                 document.getElementById("trend").innerHTML = trend;
-                //document.getElementById("temperatur").innerHTML = temperatur;
+            });
+        
+        let pegelOnlineMessreihen = "https://bis.azure-api.net/PegelonlinePublic/REST/station/STAT_ID/datenspuren/parameter/1/tage/-1?key=9dc05f4e3b4a43a9988d747825b39f43";
+        let pegelOnlineMessreihenUrl = pegelOnlineMessreihen.replace("STAT_ID", statIDKoldingen);
+        fetch(pegelOnlineMessreihenUrl)
+            .then(function (response) { return response.json(); })
+            .then(function (pegelData) {
+                let pegelstaende = pegelData.getPegelDatenspurenResult.Parameter[0].Datenspuren[0].Pegelstaende;
+                let pegelstandHeute = pegelstaende[0].Wert;
+                let pegelstandGestern = pegelstaende[pegelstaende.length -1].Wert;
+                let pegelstandDifferenz = pegelstandHeute - pegelstandGestern;
 
+                document.getElementById("wert_heute").innerHTML = pegelstandHeute + " cm";
+                document.getElementById("wert_gestern").innerHTML = pegelstandGestern + " cm";
+                document.getElementById("pegelDifferenz").innerHTML = pegelstandDifferenz  + " cm";
             });
     </script>
   </body>
