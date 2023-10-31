@@ -2,9 +2,15 @@
  * 2006.10.02 Jan Hinzmann
  * Style for my webpage 
  * quelle surprise! ;o)
- *
- * see at the bottom for mobile styles
  */
+
+@media screen and (max-width: 480px) {
+    body {
+      background-color: lightgreen;
+      font-size:174%;
+    }
+}
+
 body {
     background-color: #abc;
     font-family:sans-serif;
@@ -149,12 +155,3 @@ h3 {
     border-radius: 6px;
 }
 
-@media screen and (max-width: 480px) {
-    body {
-      background-color: lightgreen;
-      font-size:174%;
-    }
-    h3 {
-        font-size: 142%;
-    }
-}

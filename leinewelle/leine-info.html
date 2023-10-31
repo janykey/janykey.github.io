@@ -64,7 +64,7 @@
             <br />
             <div>Daten von <a href="https://www.gewaessergueteonline.nlwkn.niedersachsen.de/Start">NLWKN</a></div>
         </div>
-        <small><small><div style="text-align:right;"><sub>~~</sub></div></small></small>
+        <small><small><div style="text-align:right;"><sub>~~ &nbsp;</sub></div></small></small>
     </div>
     <div class="footer">2006-2023 Jan Hinzmann</div>
     <script>
@@ -99,7 +99,7 @@
                 let pegelstandHeute = pegelstaende[0].Wert;
                 let pegelstandGestern = pegelstaende[pegelstaende.length -1].Wert;
                 let pegelstandDifferenz = pegelstandHeute - pegelstandGestern;
-
+                    
                 document.getElementById("wert_heute").innerHTML = pegelstandHeute + " cm";
                 document.getElementById("wert_gestern").innerHTML = pegelstandGestern + " cm";
                 document.getElementById("pegelDifferenz").innerHTML = pegelstandDifferenz  + " cm";
