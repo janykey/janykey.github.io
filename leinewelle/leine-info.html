@@ -59,15 +59,19 @@
     <script>
         let pegelonlinePublicKoldingen = "https://bis.azure-api.net/PegelonlinePublic/REST/stammdaten/stationen/378?key=9dc05f4e3b4a43a9988d747825b39f43";
         let statIDKoldingen=378;
-        let statIDHerrenhausen=325;
         let statIDPoppenburg=486;
-        let pegelJSON = fetch(pegelonlinePublicKoldingen)
+        let statIDGreene=287;
+        let statIDLeineturm=400;
+        let statIDHerrenhausen=325;
+
+        let pegelOnlineUrl = pegelonlinePublicKoldingen.replace("STAT_ID", statIDKoldingen);
+        let pegelJSON = fetch(pegelOnlineUrl)
             .then(function (response) { return response.json(); })
-            .then(function (koldingenData) {
-                let messstelle = koldingenData.getStammdatenResult[0].Name;
-                let date = koldingenData.getStammdatenResult[0].Parameter[0].Datenspuren[0].AktuellerMesswert_Zeitpunkt + " Uhr";
-                let pegel = koldingenData.getStammdatenResult[0].Parameter[0].Datenspuren[0].AktuellerMesswert_Text;
-                let trend = koldingenData.getStammdatenResult[0].Parameter[0].Datenspuren[0].Trend;
+            .then(function (pegelData) {
+                let messstelle = pegelData.getStammdatenResult[0].Name;
+                let date = pegelData.getStammdatenResult[0].Parameter[0].Datenspuren[0].AktuellerMesswert_Zeitpunkt + " Uhr";
+                let pegel = pegelData.getStammdatenResult[0].Parameter[0].Datenspuren[0].AktuellerMesswert_Text;
+                let trend = pegelData.getStammdatenResult[0].Parameter[0].Datenspuren[0].Trend;
                 //let temperatur = "kalt";
 
                 document.getElementById("messstelle").innerHTML = messstelle;
