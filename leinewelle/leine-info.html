@@ -43,9 +43,16 @@
         <h3>Wavemaster Toolbox</h3>
         <div class="entry">
             
-            <div><h2><span id="messstelle"> ... loading </span> <span id="datum"></span></h2></div>
-            <div>Wasserpegel: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><span id="pegel"> ... loading </span></b>, <span id="trend"> ... loading </span></div>
-            <div>Wassertemperatur: <b><span id="wassertemperatur"> ... loading </span></b> (Sarstedt)</div>
+            <div>
+              <h1>
+                Wasser: (<span id="messstelle"> ... loading </span>)
+              </h1>
+              <span id="datum"></span>
+            </div>
+            <div>
+              <b><span id="pegel"> ... loading </span></b>, <span id="trend"> ... loading </span><br/>
+              <b><span id="wassertemperatur"> ... loading </span></b> (in Sarstedt)
+            </div>
             <!--<div><span id="datum"> ... loading </span></div>
               <div>Pegel: <span id="pegel"> ... loading </span></div>
               <div>Trend: <span id="trend"> ... loading </span></div>
@@ -53,8 +60,10 @@
             <br/>
             <div>Entwicklung</div>
             <div>
-              - Heute: &nbsp;&nbsp; <b><span id="wert_heute"> ... loading </span></b> <span id="zeitpunkt_heute"></span><br/>
-              - Gestern: <b><span id="wert_gestern"> ... loading </span></b> <span id="zeitpunkt_gestern"></span><br/>
+              - Heute: &nbsp;&nbsp; <b><span id="wert_heute"> ... loading </span></b><!--<span id="zeitpunkt_heute"></span>-->
+              <br/>
+              - Gestern: <b><span id="wert_gestern"> ... loading </span></b> <!--<span id="zeitpunkt_gestern"></span>-->
+              <br/>
               - Differenz: <b><span id="pegelDifferenz"> ... loading </span></b>  
             </div>
             
@@ -67,6 +76,7 @@
             <div><br/><small>Daten von <a href="https://www.gewaessergueteonline.nlwkn.niedersachsen.de/Start">NLWKN</a></small></div>
                   
             <br />
+            <h1>Wetter</h1>
             <div><a href="https://www.dwd.de/DE/wetter/warnungen/warnWetter_node.html?ort=Hannover" target="_blank"><img src="https://www.dwd.de/DWD/warnungen/warnapp_gemeinden/json/warnungen_gemeinde_map_nib.png"/></a></div>
             <div>Weitere Warnkarten: 
               <a href="https://www.dwd.de/DWD/warnungen/warnapp_gemeinden/json/warnungen_gemeinde_map_nib_regen.png">Regen</a>, 
@@ -147,9 +157,9 @@
                   pegelstandDifferenz = "+" + pegelstandDifferenz;
                 }
                 document.getElementById("wert_heute").innerHTML = pegelstandHeuteWert + " cm";
-                document.getElementById("zeitpunkt_heute").innerHTML = " (" + pegelstandHeuteZeitpunkt + ")";
+                //document.getElementById("zeitpunkt_heute").innerHTML = " (" + pegelstandHeuteZeitpunkt + ")";
                 document.getElementById("wert_gestern").innerHTML = pegelstandGesternWert + " cm";
-                document.getElementById("zeitpunkt_gestern").innerHTML = "(" + pegelstandGesternZeitpunkt + ")";
+                //document.getElementById("zeitpunkt_gestern").innerHTML = "(" + pegelstandGesternZeitpunkt + ")";
                 document.getElementById("pegelDifferenz").innerHTML = pegelstandDifferenz  + " cm";
             });
             
