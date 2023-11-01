@@ -43,28 +43,29 @@
         <h3>Wavemaster Toolbox</h3>
         <div class="entry">
             
-            <div><h2>Messstelle: <span id="messstelle"> ... loading </span></h2></div>
-            <div><b>Datum: </b><span id="datum"> ... loading </span></div>
-            <div><b>Pegel: </b><span id="pegel"> ... loading </span></div>
-            <div><b>Trend: </b><span id="trend"> ... loading </span></div>
+            <div><h2><span id="messstelle"> ... loading </span> <span id="datum"></span></h2></div>
+            <div>Pegel: <b><span id="pegel"> ... loading </span></b>, <span id="trend"> ... loading </span></div>
+            <div>Wassertemperatur: <b><span id="wassertemperatur"> ... loading </span></b></div>
+            <!--<div><span id="datum"> ... loading </span></div>
+              <div>Pegel: <span id="pegel"> ... loading </span></div>
+              <div>Trend: <span id="trend"> ... loading </span></div>
+            -->
             <br/>
-            <div><b>Entwicklung</b></div>
+            <div>Entwicklung</div>
             <div>
                 <ul>
-                    <li><b>Heute:</b> <span id="wert_heute"> ... loading </span></li>
-                    <li><b>Gestern:</b> <span id="wert_gestern"> ... loading </span></li>
-                    <li><b>Differenz:</b> <span id="pegelDifferenz"> ... loading </span></li>
+                    <li>Heute: &nbsp;&nbsp; <b><span id="wert_heute"> ... loading </span></b></li>
+                    <li>Gestern: <b><span id="wert_gestern"> ... loading </span></b></li>
+                    <li>Differenz: <b><span id="pegelDifferenz"> ... loading </span></b></li>
                 </ul>
             </div>
             
-            <br />
-            
-            <div><h2>Messstelle: <span id="messstelleTemperatur"> ... loading </span></h2></div>
-            <div><b>Datum: </b><span id="datumTemperatur"> ... loading </span></div>
-            <div><b>Wassertemperatur: </b><span id="wassertemperatur"> ... loading </span></div>
-            
-            <br />
-
+            <!--
+              <div><h2>Messstelle: <span id="messstelleTemperatur"> ... loading </span></h2></div>
+              <div><b>Datum: </b><span id="datumTemperatur"> ... loading </span></div>
+              <div><b>Wassertemperatur: </b><span id="wassertemperaturDetail"> ... loading </span></div>
+            -->
+                  
             <div><h2>Wetterwarnung: </h2><a
                     href="https://www.dwd.de/DE/wetter/warnungen/warnWetter_node.html?ort=Hannover"
                     target="_blank">Wetter (DWD)</a></div>
@@ -88,55 +89,86 @@
             .then(function (response) { return response.json(); })
             .then(function (pegelData) {
                 let messstelle = pegelData.getStammdatenResult[0].Name;
-                let date = pegelData.getStammdatenResult[0].Parameter[0].Datenspuren[0].AktuellerMesswert_Zeitpunkt + " Uhr";
-                let pegel = pegelData.getStammdatenResult[0].Parameter[0].Datenspuren[0].AktuellerMesswert_Text;
-                let trend = pegelData.getStammdatenResult[0].Parameter[0].Datenspuren[0].Trend;
+                let messstellenDaten = pegelData.getStammdatenResult[0].Parameter[0].Datenspuren[0];
+                let date = messstellenDaten.AktuellerMesswert_Zeitpunkt + " Uhr";
+                let pegel = messstellenDaten.AktuellerMesswert + " cm";
+                let trend = messstellenDaten.Trend;
                 
                 document.getElementById("messstelle").innerHTML = messstelle;
                 document.getElementById("datum").innerHTML = date;
                 document.getElementById("pegel").innerHTML = pegel;
                 document.getElementById("trend").innerHTML = trend;
             });
-        
+        // Wasserpegel Differenz 
         let pegelOnlineMessreihen = "https://bis.azure-api.net/PegelonlinePublic/REST/station/STAT_ID/datenspuren/parameter/1/tage/-1?key=9dc05f4e3b4a43a9988d747825b39f43";
         let pegelOnlineMessreihenUrl = pegelOnlineMessreihen.replace("STAT_ID", statIDKoldingen);
         fetch(pegelOnlineMessreihenUrl)
             .then(function (response) { return response.json(); })
             .then(function (pegelData) {
                 let pegelstaende = pegelData.getPegelDatenspurenResult.Parameter[0].Datenspuren[0].Pegelstaende;
-                let pegelstandHeute = pegelstaende[0].Wert;
-                let pegelstandGestern = pegelstaende[pegelstaende.length -1].Wert;
-                let pegelstandDifferenz = pegelstandHeute - pegelstandGestern;
-                    
-                document.getElementById("wert_heute").innerHTML = pegelstandHeute + " cm";
-                document.getElementById("wert_gestern").innerHTML = pegelstandGestern + " cm";
+                
+                let pegelstandHeuteWert = pegelstaende[0].Wert;
+                let pegelstandGesternWert = pegelstaende[pegelstaende.length -1].Wert;
+                
+                let pegelstandHeuteZeitpunktWS = pegelstaende[0].Datum;
+                let pegelstandHeuteClean = pegelstandHeuteZeitpunktWS.replace("/Date(", "").replace(")/", "");
+                let pegelstandHeuteNumber = new Number(pegelstandHeuteClean);
+                let pegelstandHeuteDate = new Date(pegelstandHeuteNumber);
+                let pegelstandHeuteFormatiert = ("0" + pegelstandHeuteDate.getDate()).slice(-2)  + "." 
+                  + ("0" + (pegelstandHeuteDate.getMonth()+1)).slice(-2) + "." 
+                  + ("0" + pegelstandHeuteDate.getFullYear()).slice(-2) + " " 
+                  + ("0" + pegelstandHeuteDate.getHours()).slice(-2) + ":" 
+                  + ("0" + pegelstandHeuteDate.getMinutes()).slice(-2) + " Uhr";
+                let pegelstandHeuteZeitpunkt = pegelstandHeuteFormatiert;
+
+                let pegelstandGesternZeitpunktWS = pegelstaende[pegelstaende.length -1].Datum;
+                let pegelstandGesternClean = pegelstandGesternZeitpunktWS.replace("/Date(", "").replace(")/", "");
+                let pegelstandGesternNumber = new Number(pegelstandGesternClean);
+                let pegelstandGesternDate = new Date(pegelstandGesternNumber);
+                let pegelstandGesternFormatiert = ("0" + pegelstandGesternDate.getDate()).slice(-2)  + "." 
+                  + ("0" + (pegelstandGesternDate.getMonth()+1)).slice(-2) + "." 
+                  + ("0" + pegelstandGesternDate.getFullYear()).slice(-2) + " " 
+                  + ("0" + pegelstandGesternDate.getHours()).slice(-2) + ":" 
+                  + ("0" + pegelstandGesternDate.getMinutes()).slice(-2) + " Uhr";
+                let pegelstandGesternZeitpunkt = pegelstandGesternFormatiert;
+
+                let pegelstandDifferenz = pegelstandHeuteWert - pegelstandGesternWert;
+                if(pegelstandDifferenz > 0 ) {
+                  pegelstandDifferenz = "+" + pegelstandDifferenz;
+                }
+                document.getElementById("wert_heute").innerHTML = pegelstandHeuteWert + " cm (" + pegelstandHeuteZeitpunkt + ")";
+                document.getElementById("wert_gestern").innerHTML = pegelstandGesternWert + " cm (" + pegelstandGesternZeitpunkt + ")";
                 document.getElementById("pegelDifferenz").innerHTML = pegelstandDifferenz  + " cm";
             });
             
         // Temperatur
         let pegelOnlineAlleGueteStationenDaten = "https://bis.azure-api.net/Pegelonline/REST/stammdaten/stationen/AlleGuetestationen?subscription-key=19094e54510d4e89b140ff2d3abf715f";
         let pegelOnlineAlleGueteStationenDatenUrl = pegelOnlineAlleGueteStationenDaten;
-        
-        //function findGueteStationSarstedt(value, index, array) { return value.name == "Sarstedt"; }
-
         fetch(pegelOnlineAlleGueteStationenDatenUrl)
             .then(function (response) { return response.json(); })
             .then(function (alleGueteStationenData) {
                 let alleGueteStationen = alleGueteStationenData.getStammdatenResult;
-                //filter alleGueteStationenData for "Sarstedt"
-                let gueteStationSarstedt = alleGueteStationen.filter((value)=>{return value.Name == "Sarstedt";})[0];
+                let gueteStationSarstedt = alleGueteStationen.filter((value)=>{ return value.Name == "Sarstedt"; })[0];
                 let gueteStationSarstedtName = gueteStationSarstedt.Name; // "Name": "Sarstedt",
                 let gueteStationSarstedtDatum = gueteStationSarstedt.Parameter[0].Datenspuren[0].AktuellerMesswert_Zeitpunkt + " Uhr";
                 let gueteStationSarstedtWert = gueteStationSarstedt.Parameter[0].Datenspuren[0].AktuellerMesswert_Text;
 
-                // "Parameter": [{        "Datenspuren": [ { ..."AktuellerMesswert_Text": "12,2 °C", "AktuellerMesswert_Zeitpunkt": "31.10.2023 21:15", ... }
-                // <div><h2>Messstelle: <span id="messstelleTemperatur"> ... loading </span></h2></div>
-                // <div><b>Datum: </b><span id="datumTemperatur"> ... loading </span></div>
-                //  <div><b>Wassertemperatur: </b><span id="wassertemperatur"> ... loading </span></div>
-                document.getElementById("messstelleTemperatur").innerHTML = gueteStationSarstedtName;
-                document.getElementById("datumTemperatur").innerHTML = gueteStationSarstedtDatum;
+                //document.getElementById("messstelleTemperatur").innerHTML = gueteStationSarstedtName;
+                //document.getElementById("datumTemperatur").innerHTML = gueteStationSarstedtDatum;
                 document.getElementById("wassertemperatur").innerHTML = gueteStationSarstedtWert;
+                //document.getElementById("wassertemperaturDetail").innerHTML = gueteStationSarstedtWert;
             });
+
+            function formatNLWKNDate(webServiceDateString){
+              //wsdate = "/Date(1698833700000)/";
+              const wsDateString = webServiceDateString.replace("/Date(", "").replace(")/", "");
+              const wsDateNumber = new Number(wsdateClean);
+              const wsDate = new Date(wsDateNumber);
+              var wsDateFormatted = wSDate.getDate()  + "." + (wsDate.getMonth()+1) + "." + wsDate.getFullYear() + " " 
+                + wsDate.getHours() + ":" + wsDate.getMinutes() + "Uhr";
+
+              return wsDate.toDateString()
+            }
     </script>
   </body>
 </html>

@@ -1,0 +1,29 @@
+
+Karte der Messstellen zu Pegelstationen
+https://www.pegelonline.nlwkn.niedersachsen.de/Karte
+https://www.pegelonline.nlwkn.niedersachsen.de/Messwerte
+
+Pegel Koldingen
+https://www.pegelonline.nlwkn.niedersachsen.de/Pegel/Binnenpegel/ID/378
+
+Pegel Herrenhausen
+https://www.pegelonline.nlwkn.niedersachsen.de/Pegel/Binnenpegel/ID/325
+
+
+Web Service 
+----------------------------------------
+Doc zum Web Service des NLWKNs
+https://www.pegelonline.nlwkn.niedersachsen.de/pdf/BenutzerhandbuchWebservicePegelonline.pdf
+
+Abfrage URL Messstellen
+https://bis.azure-api.net/PegelonlinePublic/REST/stammdaten/stationen/STAT_ID?key=9dc05f4e3b4a43a9988d747825b39f43
+Eine Station mit Stammdaten und Messdaten ab 6:00 Uhr(?)
+
+https://bis.azure-api.net/PegelonlinePublic/REST/station/STAT_ID/datenspuren/parameter/1/tage/-1?key=9dc05f4e3b4a43a9988d747825b39f43fg
+Eine Station mit Messdaten für einen Zeitraum (-1 = einen Tag)
+
+STAT_IDs
+Koldingen = 378
+
+
+Abfrage URL GueteMessstellen
