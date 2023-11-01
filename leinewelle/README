@@ -10,7 +10,7 @@ Pegel Herrenhausen
 https://www.pegelonline.nlwkn.niedersachsen.de/Pegel/Binnenpegel/ID/325
 
 
-Web Service 
+Web Service NLWKN
 ----------------------------------------
 Doc zum Web Service des NLWKNs
 https://www.pegelonline.nlwkn.niedersachsen.de/pdf/BenutzerhandbuchWebservicePegelonline.pdf
@@ -27,3 +27,10 @@ Koldingen = 378
 
 
 Abfrage URL GueteMessstellen
+
+
+Web Service DWD
+----------------------------------------
+Zur Objekteinbindung (auch JSON) finden Sie hier weitere Informationen: 
+https://www.dwd.de/DE/wetter/warnungen_aktuell/objekt_einbindung/objekteinbindung.html
+
