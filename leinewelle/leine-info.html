@@ -60,11 +60,11 @@
             <br/>
             <div>Entwicklung</div>
             <div>
-              - Heute: &nbsp;&nbsp; <b><span id="wert_heute"> ... loading </span></b><!--<span id="zeitpunkt_heute"></span>-->
+              <span id="zeitpunkt_heute"></span><b> <span id="wert_heute"> ... loading </span></b>
               <br/>
-              - Gestern: <b><span id="wert_gestern"> ... loading </span></b> <!--<span id="zeitpunkt_gestern"></span>-->
+              <span id="zeitpunkt_gestern"></span><b> <span id="wert_gestern"> ... loading </span></b>
               <br/>
-              - Differenz: <b><span id="pegelDifferenz"> ... loading </span></b>  
+              Differenz: <b><span id="pegelDifferenz"> ... loading </span></b>  
             </div>
             
             <!--
@@ -76,8 +76,9 @@
             <div><br/><small>Daten von <a href="https://www.gewaessergueteonline.nlwkn.niedersachsen.de/Start">NLWKN</a></small></div>
                   
             <br />
-            <h1>Wetter</h1>
+            <h1>Wetter (Niedersachsen)</h1>
             <div><a href="https://www.dwd.de/DE/wetter/warnungen/warnWetter_node.html?ort=Hannover" target="_blank"><img src="https://www.dwd.de/DWD/warnungen/warnapp_gemeinden/json/warnungen_gemeinde_map_nib.png"/></a></div>
+            <div>Warnungen:<span id="warnungen"> ... loading </span></div>
             <div>Weitere Warnkarten: 
               <a href="https://www.dwd.de/DWD/warnungen/warnapp_gemeinden/json/warnungen_gemeinde_map_nib_regen.png">Regen</a>, 
               <a href="https://www.dwd.de/DWD/warnungen/warnapp_gemeinden/json/warnungen_gemeinde_map_nib_uv.png">UV</a>, 
@@ -157,9 +158,9 @@
                   pegelstandDifferenz = "+" + pegelstandDifferenz;
                 }
                 document.getElementById("wert_heute").innerHTML = pegelstandHeuteWert + " cm";
-                //document.getElementById("zeitpunkt_heute").innerHTML = " (" + pegelstandHeuteZeitpunkt + ")";
+                document.getElementById("zeitpunkt_heute").innerHTML = pegelstandHeuteZeitpunkt;
                 document.getElementById("wert_gestern").innerHTML = pegelstandGesternWert + " cm";
-                //document.getElementById("zeitpunkt_gestern").innerHTML = "(" + pegelstandGesternZeitpunkt + ")";
+                document.getElementById("zeitpunkt_gestern").innerHTML = pegelstandGesternZeitpunkt;
                 document.getElementById("pegelDifferenz").innerHTML = pegelstandDifferenz  + " cm";
             });
             
@@ -180,17 +181,22 @@
                 document.getElementById("wassertemperatur").innerHTML = gueteStationSarstedtWert;
                 //document.getElementById("wassertemperaturDetail").innerHTML = gueteStationSarstedtWert;
             });
+        
+        let wetterWarnungenUrl = "https://www.dwd.de/DWD/warnungen/warnapp/json/warnings.json";
+        fetch(wetterWarnungenUrl)
+            .then(function (response) { return response.json(); })
+            .then(function (warnungen){
+              console.log(warnungen);
+              let wetterWarnungHannover = warnungen.warnings['103241000'][0];
+              let wetterWarnungRegionName = wetterWarnungHannover.regionName;
+              let wetterWarnungHeadline = wetterWarnungHannover.headline;
 
-            function formatNLWKNDate(webServiceDateString){
-              //wsdate = "/Date(1698833700000)/";
-              const wsDateString = webServiceDateString.replace("/Date(", "").replace(")/", "");
-              const wsDateNumber = new Number(wsdateClean);
-              const wsDate = new Date(wsDateNumber);
-              var wsDateFormatted = wSDate.getDate()  + "." + (wsDate.getMonth()+1) + "." + wsDate.getFullYear() + " " 
-                + wsDate.getHours() + ":" + wsDate.getMinutes() + "Uhr";
+              document.getElementById("warnungen").innerHTML = " " + wetterWarnungRegionName + "<br/>" + wetterWarnungHeadline;
+            });
+            
 
-              return wsDate.toDateString()
-            }
+            
+        
     </script>
   </body>
 </html>
