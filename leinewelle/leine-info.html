@@ -77,8 +77,27 @@
                   
             <br />
             <h1>Wetter (Niedersachsen)</h1>
+            <div id="warnungen" class="hidden">
+              <p>
+                <b>
+                  <span id="wetterWarnungUeberschrift"></span>
+                </b>
+                
+                <small>
+                  <span id="wetterWarnungZeitpunk"></span>
+                </small>
+              </p>
+              <p>
+                <b>
+                  <span id="wetterWarnungRegionsName"></span>
+                </b>
+                
+                <span id="wetterWarnungMeldung"></span>
+              </p>
+            </div>
+            
             <div><a href="https://www.dwd.de/DE/wetter/warnungen/warnWetter_node.html?ort=Hannover" target="_blank"><img src="https://www.dwd.de/DWD/warnungen/warnapp_gemeinden/json/warnungen_gemeinde_map_nib.png"/></a></div>
-            <div>Warnungen:<span id="warnungen"> ... loading </span></div>
+            <br />
             <div>Weitere Warnkarten: 
               <a href="https://www.dwd.de/DWD/warnungen/warnapp_gemeinden/json/warnungen_gemeinde_map_nib_regen.png">Regen</a>, 
               <a href="https://www.dwd.de/DWD/warnungen/warnapp_gemeinden/json/warnungen_gemeinde_map_nib_uv.png">UV</a>, 
@@ -182,20 +201,37 @@
                 //document.getElementById("wassertemperaturDetail").innerHTML = gueteStationSarstedtWert;
             });
         
-        let wetterWarnungenUrl = "https://www.dwd.de/DWD/warnungen/warnapp/json/warnings.json";
+        let wetterWarnungenUrl = "https://www.dwd.de/DWD/warnungen/warnapp/json/warnings.json";  
         fetch(wetterWarnungenUrl)
-            .then(function (response) { return response.json(); })
-            .then(function (warnungen){
-              console.log(warnungen);
+            .then(function (response) { return response.text(); })
+            .then(function (responseText) { return responseText.substring("warnWetter.loadWarnings(".length, responseText.length - ");".length); })
+            .then(function (responsetextJson) { return JSON.parse(responsetextJson); })
+            .then(function (warnungen) {
+              let wetterWarnungZeitpunk = new Date(warnungen.time);
+              let wochenTage = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"];
+              let wetterWarnungZeitpunkTag = wetterWarnungZeitpunk.getDay();
+              
+              let wetterWarnungZeitpunkFormatiert = wochenTage[ wetterWarnungZeitpunkTag -1 ] + ", "
+                  + ("0" + wetterWarnungZeitpunk.getDate()).slice(-2)  + "." 
+                  + ("0" + (wetterWarnungZeitpunk.getMonth()+1)).slice(-2) + "." 
+                  + ("0" + wetterWarnungZeitpunk.getFullYear()).slice(-2) + " " 
+                  + ("0" + wetterWarnungZeitpunk.getHours()).slice(-2) + ":" 
+                  + ("0" + wetterWarnungZeitpunk.getMinutes()).slice(-2) + " Uhr";
+              
+              // nds / Hannover = 103241000
+              // nds / Osnabrück = 903459999
               let wetterWarnungHannover = warnungen.warnings['103241000'][0];
-              let wetterWarnungRegionName = wetterWarnungHannover.regionName;
-              let wetterWarnungHeadline = wetterWarnungHannover.headline;
+              let wetterWarnungRegionsName = wetterWarnungHannover.regionName;
+              let wetterWarnungUeberschrift = wetterWarnungHannover.headline;
+              let wetterWarnungMeldung = wetterWarnungHannover.description;
 
-              document.getElementById("warnungen").innerHTML = " " + wetterWarnungRegionName + "<br/>" + wetterWarnungHeadline;
+              document.getElementById("warnungen").classList.remove("hidden");
+              document.getElementById("warnungen").classList.add("warnings");
+              document.getElementById("wetterWarnungZeitpunk").innerHTML = wetterWarnungZeitpunkFormatiert;
+              document.getElementById("wetterWarnungRegionsName").innerHTML = wetterWarnungRegionsName + "<br/>";
+              document.getElementById("wetterWarnungUeberschrift").innerHTML = wetterWarnungUeberschrift + "<br/>";
+              document.getElementById("wetterWarnungMeldung").innerHTML = wetterWarnungMeldung;
             });
-            
-
-            
         
     </script>
   </body>

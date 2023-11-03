@@ -29,8 +29,12 @@ Koldingen = 378
 Abfrage URL GueteMessstellen
 
 
+
+
+
 Web Service DWD
 ----------------------------------------
 Zur Objekteinbindung (auch JSON) finden Sie hier weitere Informationen: 
 https://www.dwd.de/DE/wetter/warnungen_aktuell/objekt_einbindung/objekteinbindung.html
 
+https://www.dwd.de/DWD/warnungen/warnapp/json/warnings.json
