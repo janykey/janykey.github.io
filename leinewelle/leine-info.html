@@ -208,10 +208,10 @@
             .then(function (responsetextJson) { return JSON.parse(responsetextJson); })
             .then(function (warnungen) {
               let wetterWarnungZeitpunk = new Date(warnungen.time);
-              let wochenTage = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"];
+              let wochenTage = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"];
               let wetterWarnungZeitpunkTag = wetterWarnungZeitpunk.getDay();
               
-              let wetterWarnungZeitpunkFormatiert = wochenTage[ wetterWarnungZeitpunkTag -1 ] + ", "
+              let wetterWarnungZeitpunkFormatiert = wochenTage[ wetterWarnungZeitpunkTag ] + ", "
                   + ("0" + wetterWarnungZeitpunk.getDate()).slice(-2)  + "." 
                   + ("0" + (wetterWarnungZeitpunk.getMonth()+1)).slice(-2) + "." 
                   + ("0" + wetterWarnungZeitpunk.getFullYear()).slice(-2) + " " 
