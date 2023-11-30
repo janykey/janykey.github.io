@@ -123,6 +123,7 @@ h3 {
     width: fit-content;
     margin-bottom: 4px;
     padding: 12px;
+    padding-top: 22px;
     border: 2px solid orange;
     border-top-right-radius: 16px;
     border-bottom-left-radius: 16px;
