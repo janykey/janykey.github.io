@@ -50,8 +50,10 @@
               <span id="datum"></span>
             </div>
             <div>
-              <b><span id="pegel"> ... loading </span></b>, <span id="trend"> ... loading </span><br/>
-              <b><span id="wassertemperatur"> ... loading </span></b> (in Sarstedt)
+              <b><span id="pegel"> ... loading </span></b>, 
+                 <span id="trend"> ... loading </span>, 
+                 <span id="meldestufe"> ... loading </span> <span id="meldestufen"> ... loading </span><br/>
+              <b><span id="wassertemperatur"> ... loading </span></b> (in Sarstedt)<br/>
             </div>
             <!--<div><span id="datum"> ... loading </span></div>
               <div>Pegel: <span id="pegel"> ... loading </span></div>
@@ -73,7 +75,7 @@
               <div><b>Wassertemperatur: </b><span id="wassertemperaturDetail"> ... loading </span></div>
             -->
 
-            <div><br/><small>Daten von <a href="https://www.pegelonline.nlwkn.niedersachsen.de/Pegel/Binnenpegel/ID/378">NLWKN</a></small></div>
+            <div><br/><small>Daten von <a href="https://www.pegelonline.nlwkn.niedersachsen.de/Pegel/Binnenpegel/ID/378">NLWKN (Koldingen)</a></small></div>
                   
             <br />
             <h1>Wetterwarnungen</h1>
@@ -134,11 +136,20 @@
                 let date = messstellenDaten.AktuellerMesswert_Zeitpunkt + " Uhr";
                 let pegel = messstellenDaten.AktuellerMesswert + " cm";
                 let trend = messstellenDaten.Trend;
-                
+                let meldestufe = "Meldestufe " + messstellenDaten.AktuelleMeldeStufe;
+                let meldestufenDefinition = messstellenDaten.Meldestufen;
+                let meldestufen = "(";
+                meldestufenDefinition.forEach(element => {
+                  meldestufen += element.Stufe + " > " + element.Wert + " cm, ";
+                });
+                meldestufen = meldestufen.slice(0, meldestufen.length -2) + ")";
+
                 document.getElementById("messstelle").innerHTML = messstelle;
                 document.getElementById("datum").innerHTML = date;
                 document.getElementById("pegel").innerHTML = pegel;
                 document.getElementById("trend").innerHTML = trend;
+                document.getElementById("meldestufe").innerHTML = meldestufe;
+                document.getElementById("meldestufen").innerHTML = meldestufen;
             });
         // Wasserpegel Differenz 
         let pegelOnlineMessreihen = "https://bis.azure-api.net/PegelonlinePublic/REST/station/STAT_ID/datenspuren/parameter/1/tage/-1?key=9dc05f4e3b4a43a9988d747825b39f43";
