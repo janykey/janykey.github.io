@@ -53,7 +53,7 @@
               <b><span id="pegel"> ... loading </span></b>, 
                  <span id="trend"> ... loading </span>, 
                  <span id="meldestufe"> ... loading </span> <span id="meldestufen"> ... loading </span><br/>
-              <b><span id="wassertemperatur"> ... loading </span></b> (in Poppenburg)<br/>
+              <b><span id="wassertemperatur"> ... loading </span></b> (in Sarstedt)
             </div>
             <!--<div><span id="datum"> ... loading </span></div>
               <div>Pegel: <span id="pegel"> ... loading </span></div>
@@ -202,8 +202,8 @@
             .then(function (response) { return response.json(); })
             .then(function (alleGueteStationenData) {
                 let alleGueteStationen = alleGueteStationenData.getStammdatenResult;
-                //let gueteStationSarstedt = alleGueteStationen.filter((value)=>{ return value.Name == "Sarstedt"; })[0];
-                let gueteStationSarstedt = alleGueteStationen.filter((value)=>{ return value.Name == "Poppenburg"; })[0];
+                let gueteStationSarstedt = alleGueteStationen.filter((value)=>{ return value.Name == "Sarstedt"; })[0];
+                //let gueteStationSarstedt = alleGueteStationen.filter((value)=>{ return value.Name == "Poppenburg"; })[0];
                 let gueteStationSarstedtName = gueteStationSarstedt.Name; // "Name": "Sarstedt",
                 let gueteStationSarstedtDatum = gueteStationSarstedt.Parameter[0].Datenspuren[0].AktuellerMesswert_Zeitpunkt + " Uhr";
                 let gueteStationSarstedtWert = gueteStationSarstedt.Parameter[0].Datenspuren[0].AktuellerMesswert_Text;
