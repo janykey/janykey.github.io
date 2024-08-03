@@ -50,6 +50,7 @@
               <span id="datum"></span>
             </div>
             <div>
+              <b><span id="wassertemperatur"> ... loading </span></b> (in Sarstedt)
               <b><span id="pegel"> ... loading </span></b>, 
                  <span id="trend"> ... loading </span>, 
                  <span id="grundablass"> <br />
@@ -59,7 +60,6 @@
                   </small>
                  </span>,
                  <span id="meldestufe"> ... loading </span> <span id="meldestufen"> ... loading </span><br/>
-              <b><span id="wassertemperatur"> ... loading </span></b> (in Sarstedt)
             </div>
             <!--<div><span id="datum"> ... loading </span></div>
               <div>Pegel: <span id="pegel"> ... loading </span></div>
@@ -145,11 +145,11 @@
                 let trend = messstellenDaten.Trend;
                 let meldestufe = "Meldestufe " + messstellenDaten.AktuelleMeldeStufe;
                 let meldestufenDefinition = messstellenDaten.Meldestufen;
-                let meldestufen = "(";
+                let meldestufen = "<br/><small>";
                 meldestufenDefinition.forEach(element => {
-                  meldestufen += element.Stufe + " > " + element.Wert + " cm, ";
+                  meldestufen += element.Stufe + " > " + element.Wert + " cm<br/>";
                 });
-                meldestufen = meldestufen.slice(0, meldestufen.length -2) + ")";
+                meldestufen = meldestufen.slice(0, meldestufen.length -2) + "</small>";
 
                 document.getElementById("messstelle").innerHTML = messstelle;
                 document.getElementById("datum").innerHTML = date;
