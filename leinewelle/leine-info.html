@@ -163,7 +163,7 @@
                 let pegelstandGesternWert = pegelstaende[pegelstaende.length -1].Wert;
                 
                 let pegelstandHeuteZeitpunktWS = pegelstaende[0].Datum;
-                let pegelstandHeuteClean = pegelstandHeuteZeitpunktWS.replace("/Date(", "").replace(")/", "");
+                let pegelstandHeuteClean = pegelstandHeuteZeitpunktWS.replace("/Date(", "").replace(")/", "").replace("+0000","");
                 let pegelstandHeuteNumber = new Number(pegelstandHeuteClean);
                 let pegelstandHeuteDate = new Date(pegelstandHeuteNumber);
                 let pegelstandHeuteFormatiert = ("0" + pegelstandHeuteDate.getDate()).slice(-2)  + "." 
@@ -174,7 +174,7 @@
                 let pegelstandHeuteZeitpunkt = pegelstandHeuteFormatiert;
 
                 let pegelstandGesternZeitpunktWS = pegelstaende[pegelstaende.length -1].Datum;
-                let pegelstandGesternClean = pegelstandGesternZeitpunktWS.replace("/Date(", "").replace(")/", "");
+                let pegelstandGesternClean = pegelstandGesternZeitpunktWS.replace("/Date(", "").replace(")/", "").replace("+0000","");
                 let pegelstandGesternNumber = new Number(pegelstandGesternClean);
                 let pegelstandGesternDate = new Date(pegelstandGesternNumber);
                 let pegelstandGesternFormatiert = ("0" + pegelstandGesternDate.getDate()).slice(-2)  + "." 
