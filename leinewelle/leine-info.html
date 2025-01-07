@@ -50,10 +50,16 @@
               <span id="datum"></span>
             </div>
             <div>
+              <b><span id="wassertemperatur"> ... loading </span></b> (in Sarstedt)<br />
               <b><span id="pegel"> ... loading </span></b>, 
-                 <span id="trend"> ... loading </span>, 
+                 <span id="trend"> ... loading </span><br />
+                 <span id="grundablass">Grundablass <br />
+                  <small>
+                    länger &gt; 180: öffnet<br />
+                    länger &lt; 160: schließt 
+                  </small><br />
+                 </span>
                  <span id="meldestufe"> ... loading </span> <span id="meldestufen"> ... loading </span><br/>
-              <b><span id="wassertemperatur"> ... loading </span></b> (in Poppenburg)<br/>
             </div>
             <!--<div><span id="datum"> ... loading </span></div>
               <div>Pegel: <span id="pegel"> ... loading </span></div>
@@ -78,8 +84,9 @@
             <div><br/><small>Daten von <a href="https://www.pegelonline.nlwkn.niedersachsen.de/Pegel/Binnenpegel/ID/378">NLWKN (Koldingen)</a></small></div>
                   
             <br />
-            <h1>Wetterwarnungen</h1>
-            <small>Niedersachsen, Bremen</small>
+            <h1>Wetter</h1>
+            <small><a href="https://www.wetteronline.de/blitzradar/hannover?wrx=52.19,9.74">Blitzradar Hannover</a></small><br/>
+            <small>Warnungen f&uuml;r Niedersachsen, Bremen</small>
             <div id="warnungen" class="hidden">
               <p>
                 <b>
@@ -138,11 +145,11 @@
                 let trend = messstellenDaten.Trend;
                 let meldestufe = "Meldestufe " + messstellenDaten.AktuelleMeldeStufe;
                 let meldestufenDefinition = messstellenDaten.Meldestufen;
-                let meldestufen = "(";
+                let meldestufen = "<br/><small>";
                 meldestufenDefinition.forEach(element => {
-                  meldestufen += element.Stufe + " > " + element.Wert + " cm, ";
+                  meldestufen += element.Stufe + " > " + element.Wert + " cm<br/>";
                 });
-                meldestufen = meldestufen.slice(0, meldestufen.length -2) + ")";
+                meldestufen = meldestufen.slice(0, meldestufen.length -2) + "</small>";
 
                 document.getElementById("messstelle").innerHTML = messstelle;
                 document.getElementById("datum").innerHTML = date;
@@ -202,8 +209,8 @@
             .then(function (response) { return response.json(); })
             .then(function (alleGueteStationenData) {
                 let alleGueteStationen = alleGueteStationenData.getStammdatenResult;
-                //let gueteStationSarstedt = alleGueteStationen.filter((value)=>{ return value.Name == "Sarstedt"; })[0];
-                let gueteStationSarstedt = alleGueteStationen.filter((value)=>{ return value.Name == "Poppenburg"; })[0];
+                let gueteStationSarstedt = alleGueteStationen.filter((value)=>{ return value.Name == "Sarstedt"; })[0];
+                //let gueteStationSarstedt = alleGueteStationen.filter((value)=>{ return value.Name == "Poppenburg"; })[0];
                 let gueteStationSarstedtName = gueteStationSarstedt.Name; // "Name": "Sarstedt",
                 let gueteStationSarstedtDatum = gueteStationSarstedt.Parameter[0].Datenspuren[0].AktuellerMesswert_Zeitpunkt + " Uhr";
                 let gueteStationSarstedtWert = gueteStationSarstedt.Parameter[0].Datenspuren[0].AktuellerMesswert_Text;
