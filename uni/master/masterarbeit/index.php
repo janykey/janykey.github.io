@@ -21,7 +21,7 @@ xml:lang="en">
 </div>
 
 <div class="content">
-<h3>Externe Masterarbeit beim Deutschen Zentrum f&uuml;r Luft- und Raumfahrt e.V. (DLR)</h3>
+<h3 class="header">Externe Masterarbeit beim Deutschen Zentrum f&uuml;r Luft- und Raumfahrt e.V. (DLR)</h3>
 <div class="entry">
 
 <p>
@@ -87,7 +87,7 @@ Auf dem <em>Workshop on Program Analysis for Software Tools and Engineering</em>
 </p>
 
 </div>
-<h3>Feedback</h3>
+<h3 class="header">Feedback</h3>
 <div class="entry">
 <form method="post" action="sendmail.php">
 <?php

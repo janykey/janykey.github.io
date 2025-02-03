@@ -95,7 +95,7 @@ p {
     max-width: 850px;
 }
 
-h3 {
+.header {
     border: 1px solid #abc;
     border-top-right-radius: 16px;
     font-size: 130%;

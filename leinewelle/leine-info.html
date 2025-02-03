@@ -40,32 +40,19 @@
     </div>
 
     <div class="content">
-        <h3>Wavemaster Toolbox</h3>
+        <h3 class="header">Wavemaster Toolbox</h3>
         <div class="entry">
-            
             <div>
-              <h1>
-                Wasser (<span id="messstelle"> ... loading </span>)
-              </h1>
-              <span id="datum"></span>
+              <h2>Wasser: <span id="messstelle"> ... loading </span></h2>
+              <h3><span id="datum"></span></h3>
             </div>
-            <div>
-              <b><span id="wassertemperatur"> ... loading </span></b> (in Sarstedt)<br />
-              <b><span id="pegel"> ... loading </span></b>, 
-                 <span id="trend"> ... loading </span><br />
-                 <span id="grundablass">Grundablass <br />
-                  <small>
-                    länger &gt; 180: öffnet<br />
-                    länger &lt; 160: schließt 
-                  </small><br />
-                 </span>
-                 <span id="meldestufe"> ... loading </span> <span id="meldestufen"> ... loading </span><br/>
-            </div>
-            <!--<div><span id="datum"> ... loading </span></div>
-              <div>Pegel: <span id="pegel"> ... loading </span></div>
-              <div>Trend: <span id="trend"> ... loading </span></div>
-            -->
             <br/>
+            <div>
+              Temperatur: <b><span id="wassertemperatur"> ... loading </span></b> (in Sarstedt)<br />
+              Pegelstand: <b><span id="pegel"> ... loading </span></b>, 
+              <span id="trend"> ... loading </span>
+            </div>
+            <br />
             <div>Entwicklung</div>
             <div>
               <span id="zeitpunkt_gestern"></span><b> <span id="wert_gestern"> ... loading </span></b>
@@ -74,14 +61,36 @@
               <br/>
               Differenz: <b><span id="pegelDifferenz"> ... loading </span></b>  
             </div>
+            <br />
+            <div>
+              <small>
+                <b><span id="grundablass">Grundablass</span></b>
+                <div>
+                  <span>länger &gt; 180: öffnet</span>
+                  <br />
+                  <span>länger &lt; 160: schließt</span>
+              </small>
+            </div>
+            <br />
+            <div>
+              <span id="meldestufe"> ... loading </span> 
+              <span id="meldestufen"> ... loading </span><br/>
+            </div>
+            <!--<div><span id="datum"> ... loading </span></div>
+            <div>Pegel: <span id="pegel"> ... loading </span></div>
+            <div>Trend: <span id="trend"> ... loading </span></div>
+            -->
+            
             
             <!--
               <div><h2>Messstelle: <span id="messstelleTemperatur"> ... loading </span></h2></div>
               <div><b>Datum: </b><span id="datumTemperatur"> ... loading </span></div>
               <div><b>Wassertemperatur: </b><span id="wassertemperaturDetail"> ... loading </span></div>
-            -->
-
-            <div><br/><small>Daten von <a href="https://www.pegelonline.nlwkn.niedersachsen.de/Pegel/Binnenpegel/ID/378">NLWKN (Koldingen)</a></small></div>
+              -->
+              
+            <br />
+            <div><small>Daten von <a href="https://www.pegelonline.nlwkn.niedersachsen.de/Pegel/Binnenpegel/ID/378">NLWKN (Koldingen)</a></small></div>
+            <div><small>Daten von <a href="https://www.pegelonline.nlwkn.niedersachsen.de/Pegel/Binnenpegel/ID/325">NLWKN (Herrenhausen)</a></small></div>
                   
             <br />
             <h1>Wetter</h1>
